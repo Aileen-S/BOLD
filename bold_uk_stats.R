@@ -2,8 +2,6 @@ library(tidyverse)
 library(bold)
 library(getopt)
 
-
-
 spec <- matrix(c(
   'taxon',   't', 1, 'character', 'Coleoptera family',
   'input',   'i', 2, 'character', 'input BOLD csv file (optional, otherwise will search BOLD)',
@@ -26,6 +24,9 @@ canada_total <- data.frame(family = c("Aderidae", "Agyrtidae", "Amphizoidae", "A
 germany_total <- data.frame(family = c("Aderidae", "Agyrtidae", "Alleculidae", "Anobiidae", "Anthicidae", "Anthribidae", "Apionidae", "Aspidiphoridae", "Attelabidae", "Biphyllidae", "Bostrichidae", "Bothrideridae", "Bruchidae", "Buprestidae", "Byrrhidae", "Byturidae", "Cantharidae", "Carabidae", "Cerambycidae", "Cerophytidae", "Cerylonidae", "Cholevidae", "Chrysomelidae", "Cimberidae", "Cisidae", "Clambidae", "Cleridae", "Coccinellidae", "Colonidae", "Colydiidae", "Corylophidae", "Cryptophagidae", "Cucujidae", "Curculionidae", "Cybocephalidae", "Dascyllidae", "Dermestidae", "Derodontidae", "Drilidae", "Dryopidae", "Dytiscidae", "Elateridae", "Elmidae", "Endomychidae", "Erotylidae", "Eucinetidae", "Eucnemidae", "Georissidae", "Geotrupidae", "Gyrinidae", "Haliplidae", "Heteroceridae", "Histeridae", "Hydraenidae", "Hydrochidae", "Hydrophilidae", "Hygrobiidae", "Kateretidae", "Laemophloeidae", "Lagriidae", "Lampyridae", "Languriidae", "Lathridiidae", "Leiodidae", "Leptinidae", "Limnichidae", "Lissomidae", "Lophocateridae", "Lucanidae", "Lycidae", "Lyctidae", "Lymexylonidae", "Malachiidae", "Melandryidae", "Meloidae", "Melyridae", "Microsphoridae", "Monotomidae", "Mordellidae", "Mycetophagidae", "Mycteridae", "Nemonychidae", "Nitidulidae", "Nosodendridae", "Noteridae", "Oedemeridae", "Omalisidae", "Peltidae", "Phalacridae", "Phloeostichidae", "Phloiophilidae", "Platypodidae", "Prostomidae", "Pselaphidae", "Psephenidae", "Ptiliidae", "Ptinidae", "Pyrochoidae", "Pythidae", "Rhipiphoridae", "Rhynchitidae", "Rhysodidae", "Salpingidae", "Scarabaeidae", "Scirtidae", "Scolytidae", "Scraptiidae", "Scydmaenidae", "Silphidae", "Silvanidae", "Spercheidae", "Sphaeritidae", "Sphaerosomatidae", "Staphylinidae", "Tenebrionidae", "Tetratomidae", "Throscidae", "Trogidae", "Trogositidae", "Urodonidae"),
                       count = c(8, 4, 17, 66, 25, 19, 132, 2, 3, 2, 5, 7, 28, 97, 25, 2, 85, 547, 183, 1, 6, 48, 508, 2, 44, 12, 21, 78, 19, 19, 15, 129, 4, 765, 3, 1, 41, 2, 2, 14, 143, 143, 25, 11, 14, 2, 18, 3, 10, 13, 20, 14, 83, 52, 7, 109, 1, 12, 20, 3, 3, 2, 77, 79, 2, 3, 1, 1, 7, 7, 6, 2, 33, 32, 19, 24, 1, 22, 78, 17, 1, 1, 120, 1, 2, 25, 1, 4, 22, 1, 1, 2, 1, 89, 1, 74, 21, 3, 2, 3, 25, 2, 14, 152, 25, 109, 28, 53, 22, 10, 1, 1, 3, 1464, 60, 3, 8, 7, 4, 3))
 
+lithuania_total <- data.frame(family = c('Aderidae','Agyrtidae','Alexiidae','Anthicidae','Anthribidae','Attelabidae','Biphylidae','Boridae','Bostrichidae','Bothrideridae','Brachyceridae','Brentidae','Buprestidae','Byrrhidae','Byturidae','Cantharidae','Carabidae','Cerambycidae','Cerylonidae','Chrysomelidae','Ciidae','Clambidae','Cleridae','Coccinellidae','Corylophidae','Cryptophagidae','Cucujidae','Curculionidae','Dascilidae','Dermestidae','Derodontidae','Drilidae','Dryophthoridae','Dryopidae','Dytiscidae','Elateridae','Elmidae','Endomychidae','Erotylidae','Eucinetidae','Eucnemidae','Geotrupidae','Gyrinidae','Haliplidae','Heteroceridae','Histeridae','Hydraenidae','Hydrophilidae','Kateretidae','Laemoploeidae','Lampyridae','Latridiidae','Leiodidae','Limnichidae','Lucanidae','Lymexilidae','Megalophodidae','Melandryidae','Meloidae','Melyridae','Monotomidae','Mordellidae','Mycetophagidae','Mycteridae','Nemonychidae','Nitidulidae','Nosodendridae','Noteridae','Ochodaeidae','Oedemeridae','Orsodacnidae','Phalacridae','Phloeophilidae','Phloeostichidae','Pyrochroidae','Pythidae','Prostomidae','Psephenidae','Ptiliidae','Ptinidae','Rhipiphoridae','Rhysodidae','Salphingidae','Scarabaeidae','Scirtidae','Scraptiidae','Silphidae','Silvanidae','Sphaeritidae','Sphaeriusidae','Sphindidae','Staphylinidae','Stenotrachelidae','Tenebrionidae','Tetratomidae','Throscidae','Trachypachidae','Trogidae','Trogossitidae','Zopheridae'),
+                              count = c(7, 3, 1, 18, 15, 25, 2, 1, 5, 7, 12, 102, 56, 16, 2, 57, 392, 163, 5, 377, 38, 8, 14, 64, 11, 111, 5, 606, 1, 46, 1, 1, 4, 10, 134, 105, 16, 7, 12, 1, 19, 7, 15, 20, 12, 72, 30, 96, 11, 16, 2, 64, 120, 4, 7, 3, 4, 29, 10, 38, 23, 34, 14, 1, 2, 110, 1, 2, 1, 21, 1, 20, 1, 1, 3, 2, 1, 1, 70, 83, 3, 1, 14, 104, 19, 20, 22, 11, 1, 1, 2, 1230, 1, 73, 6, 9, 1, 3, 9, 12))
+
 if (opt$country == 'United Kingdom') {
   country <- uk_total
 }
@@ -34,6 +35,9 @@ if (opt$country == 'Canada') {
 }
 if (opt$country == 'Germany') {
   country <- germany_total
+}
+if (opt$country == 'Lithuania') {
+  country <- lithuania_total
 }
 #merge <- merge(uk_total, canada_total, by = "family", all.x = TRUE, all.y = TRUE)
 #write.csv(merge, "country_counts.csv", row.names = FALSE)
